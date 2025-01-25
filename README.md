@@ -2,25 +2,6 @@
 
 This project sets up AWS CloudWatch alarms and SNS notifications to monitor and alert on estimated charges for an AWS account.
 
-## Project Structure
-
-```
-/billing_alerts
-├── main.tf
-├── variables.tf
-├── outputs.tf
-├── README.md
-└── modules
-    ├── cloudwatch
-    │   ├── main.tf
-    │   ├── variables.tf
-    │   └── outputs.tf
-    └── sns
-        ├── main.tf
-        ├── variables.tf
-        └── outputs.tf
-```
-
 ## Usage
 
 ## Files
