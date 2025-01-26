@@ -6,15 +6,14 @@ This module creates a CloudWatch alarm to monitor AWS billing and an SNS topic t
 
 ```hcl
 module "billing_alerts" {
-  source        = "./billing_alerts_module"
-  alarm_name    = "MyBillingAlarm"
-  threshold     = 100.0
+  source         = "./billing_alerts_module"
+  alarm_name     = "MyBillingAlarm"
+  threshold      = 100.0
   sns_topic_name = "my-sns-topic"
-  email         = "my-email@example.com"
+  email          = "my-email@example.com"
+  create_kms_key = true
 }
-
-----------------------------------
------------------------------------
+```
 
 # Billing Alerts Terraform Project
 
@@ -57,7 +56,7 @@ This project sets up AWS CloudWatch alarms and SNS notifications to monitor and 
 3. **Run tests:**
 
     ```sh
-    go test ./...
+    go test -v -count=1 ./test/...
     ```
 
 ## Variables
@@ -66,6 +65,7 @@ This project sets up AWS CloudWatch alarms and SNS notifications to monitor and 
 - `threshold`: The threshold for the CloudWatch alarm (default: 75.0).
 - `sns_topic_name`: The name of the SNS topic (default: "sns-topic-for-billing-alerts").
 - `email`: The email address for SNS notifications (default: "your-email@example.com").
+- `create_kms_key`: Whether to create a KMS key for the SNS topic (default: false).
 
 ## Outputs
 
@@ -74,5 +74,3 @@ This project sets up AWS CloudWatch alarms and SNS notifications to monitor and 
 ## License
 
 This project is licensed under the terms of the Mozilla Public License Version 2.0.
-
-

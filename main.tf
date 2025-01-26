@@ -1,9 +1,10 @@
 module "billing_alerts" {
-  source    = "./billing_module"
-  email     = "your-email@example.com"
-  threshold = 75
-  alarm_name = "testing_module_name_arg"
-  sns_topic_name = "testing_topic_name_arg"
+  source         = "./billing_module"
+  email          = var.email
+  threshold      = var.threshold
+  alarm_name     = var.alarm_name
+  sns_topic_name = var.sns_topic_name
+#  create_kms_key = "true" # default is false
 }
 
 

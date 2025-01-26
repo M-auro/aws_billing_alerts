@@ -36,8 +36,9 @@ resource "aws_cloudwatch_metric_alarm" "billing_alarm" {
 
 # SNS topic for billing alerts
 resource "aws_sns_topic" "billing_alerts" {
-  provider = aws.us_east_1
-  name     = var.sns_topic_name
+  provider          = aws.us_east_1
+  name              = var.sns_topic_name
+  kms_master_key_id = var.create_kms_key ? aws_kms_key.billing_key[0].id : null # Optional, if you want to use a customer-managed KMS key
   tags = {
     terraform_managed = "true"
   }
@@ -50,3 +51,16 @@ resource "aws_sns_topic_subscription" "user_updates_sqs_target" {
   protocol  = "email"
   endpoint  = var.email
 }
+
+# Create a customer kms key for the sns topic
+resource "aws_kms_key" "billing_key" {
+  count                   = var.create_kms_key ? 1 : 0 # default is false
+  provider                = aws.us_east_1
+  description             = "KMS key for SNS topic"
+  enable_key_rotation     = true
+  deletion_window_in_days = 7
+  tags = {
+    terraform_managed = "true"
+  }
+}
+

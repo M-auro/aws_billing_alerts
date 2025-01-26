@@ -26,5 +26,4 @@ variable "create_kms_key" {
   description = "Whether to create a KMS key for the SNS topic"
   type        = bool
   default     = false
-
 }

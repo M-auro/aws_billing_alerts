@@ -1,13 +1,9 @@
 package main
 
 import (
-	"testing"
+    "testing"
 )
 
-func TestHelloWorld(t *testing.T) {
-	expected := "Hello, World!"
-	actual := "Hello, World!"
-	if actual != expected {
-		t.Errorf("expected %s, got %s", expected, actual)
-	}
+func TestMain(t *testing.T) {
+    // Placeholder for main tests if needed in the future
 }
