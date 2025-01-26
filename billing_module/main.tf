@@ -45,7 +45,7 @@ resource "aws_sns_topic" "billing_alerts" {
 }
 
 # Subscription for the SNS topic to send email notifications to the user.
-resource "aws_sns_topic_subscription" "user_updates_sqs_target" {
+resource "aws_sns_topic_subscription" "subscription_email" {
   provider  = aws.us_east_1
   topic_arn = aws_sns_topic.billing_alerts.arn
   protocol  = "email"
