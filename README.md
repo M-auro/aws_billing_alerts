@@ -1,18 +1,39 @@
+# Billing Alerts Module
+
+This module creates a CloudWatch alarm to monitor AWS billing and an SNS topic to send notifications.
+
+## Usage
+
+```hcl
+module "billing_alerts" {
+  source        = "./billing_alerts_module"
+  alarm_name    = "MyBillingAlarm"
+  threshold     = 100.0
+  sns_topic_name = "my-sns-topic"
+  email         = "my-email@example.com"
+}
+
+----------------------------------
+-----------------------------------
+
 # Billing Alerts Terraform Project
 
 This project sets up AWS CloudWatch alarms and SNS notifications to monitor and alert on estimated charges for an AWS account.
 
-## Usage
-
 ## Files
 
-- **cloudwatch.tf**: Defines the CloudWatch metric alarm for monitoring estimated charges.
-- **sns.tf**: Creates an SNS topic and subscription for sending email notifications.
-- **provider.tf**: Configures the AWS provider.
-- **outputs.tf**: Outputs the name of the CloudWatch alarm.
-- **versions.tf**: Specifies the required provider versions.
+- **main.tf**: Defines the main Terraform configuration, including the billing alerts module.
+- **billing_module/**: Contains the Terraform module for setting up CloudWatch alarms and SNS notifications.
+  - **main.tf**: Defines the resources for CloudWatch alarms and SNS notifications.
+  - **variables.tf**: Defines the input variables for the module.
+  - **outputs.tf**: Defines the output values for the module.
+  - **versions.tf**: Specifies the required provider versions.
+- **go.mod**: Go module file.
+- **go.sum**: Go module dependencies.
+- **LICENSE**: License file.
 - **main_test.go**: Contains a simple Go test.
 - **test/cloudwatch_test.go**: Contains tests for the CloudWatch alarm using Terratest.
+- **.gitignore**: Git ignore file.
 
 ## Requirements
 
@@ -39,6 +60,13 @@ This project sets up AWS CloudWatch alarms and SNS notifications to monitor and 
     go test ./...
     ```
 
+## Variables
+
+- `alarm_name`: The name of the CloudWatch alarm (default: "BillingAlarm").
+- `threshold`: The threshold for the CloudWatch alarm (default: 75.0).
+- `sns_topic_name`: The name of the SNS topic (default: "sns-topic-for-billing-alerts").
+- `email`: The email address for SNS notifications (default: "your-email@example.com").
+
 ## Outputs
 
 - **alarm_name**: The name of the CloudWatch alarm.
@@ -46,4 +74,5 @@ This project sets up AWS CloudWatch alarms and SNS notifications to monitor and 
 ## License
 
 This project is licensed under the terms of the Mozilla Public License Version 2.0.
+
 
