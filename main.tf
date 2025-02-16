@@ -4,7 +4,7 @@ module "billing_alerts" {
   threshold      = var.threshold
   alarm_name     = var.alarm_name
   sns_topic_name = var.sns_topic_name
-#  create_kms_key = "true" # default is false
+  create_kms_key = var.create_kms_key
 }
 
 
