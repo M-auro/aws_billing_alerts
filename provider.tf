@@ -1,5 +1,5 @@
-provider "aw" {
-    region = "us-west-1"
+provider "aws" {
+    region = var.region
 }
 
 terraform {

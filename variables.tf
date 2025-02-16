@@ -27,3 +27,10 @@ variable "create_kms_key" {
   type        = bool
   default     = false
 }
+
+variable "region" {
+  description = "The AWS region"
+  type        = string
+  default     = "us-east-1"
+  
+}
